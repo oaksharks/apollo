@@ -11,8 +11,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Consumer")
-@SQLDelete(sql = "Update Consumer set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@SQLDelete(sql = "Update Consumer set \"IsDeleted\" = 1 where id = ?")
+@Where(clause = "\"IsDeleted\" = '0'")
 public class Consumer extends BaseEntity {
 
   @Column(name = "Name", nullable = false)

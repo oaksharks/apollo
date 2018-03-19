@@ -11,11 +11,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Namespace")
-@SQLDelete(sql = "Update Namespace set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@SQLDelete(sql = "Update Namespace set \"IsDeleted\" = '1' where id = ?")
+@Where(clause = "\"IsDeleted\" = '0'")
 public class Namespace extends BaseEntity {
 
-  @Column(name = "appId", nullable = false)
+  @Column(name = "AppId", nullable = false)
   private String appId;
 
   @Column(name = "ClusterName", nullable = false)

@@ -3,12 +3,20 @@ spring:
     name: apollo-adminservice
   profiles:
     active: ${apollo_profile}
-
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
 ctrip:
   appid: 100003172
   
 server:
   port: 8090
-  
+
 logging:
   file: /opt/logs/100003172/apollo-adminservice.log
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

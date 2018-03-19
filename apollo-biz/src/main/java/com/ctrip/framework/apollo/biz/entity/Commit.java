@@ -12,11 +12,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Commit")
-@SQLDelete(sql = "Update Commit set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@SQLDelete(sql = "Update Commit set \"IsDeleted\" = '1' where id = ?")
+@Where(clause = "\"IsDeleted\" = '0'")
 public class Commit extends BaseEntity {
 
-  @Lob
   @Column(name = "ChangeSets", nullable = false)
   private String changeSets;
 

@@ -14,8 +14,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Permission")
-@SQLDelete(sql = "Update Permission set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@SQLDelete(sql = "Update Permission set \"IsDeleted\" = '1' where id = ?")
+@Where(clause = "\"IsDeleted\" = '0'")
 public class Permission extends BaseEntity {
   @Column(name = "PermissionType", nullable = false)
   private String permissionType;

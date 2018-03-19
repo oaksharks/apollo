@@ -14,6 +14,8 @@
 		<github.path>${project.artifactId}</github.path>
 	</properties>
 	<dependencies>
+
+
 		<!-- apollo -->
 		<dependency>
 			<groupId>com.ctrip.framework.apollo</groupId>

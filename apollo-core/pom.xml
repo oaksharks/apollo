@@ -16,6 +16,13 @@
 		<github.path>${project.artifactId}</github.path>
 	</properties>
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.0</version>
+		</dependency>
+
 		<!-- json -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>

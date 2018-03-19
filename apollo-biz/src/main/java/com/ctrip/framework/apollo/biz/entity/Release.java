@@ -3,6 +3,7 @@ package com.ctrip.framework.apollo.biz.entity;
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
 
 import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
@@ -15,8 +16,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Release")
-@SQLDelete(sql = "Update Release set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@SQLDelete(sql = "Update Release set \"IsDeleted\" = '1' where id = ?")
+@Where(clause = "\"IsDeleted\" = '0'")
 public class Release extends BaseEntity {
   @Column(name = "ReleaseKey", nullable = false)
   private String releaseKey;
@@ -34,13 +35,12 @@ public class Release extends BaseEntity {
   private String namespaceName;
 
   @Column(name = "Configurations", nullable = false)
-  @Lob
   private String configurations;
 
   @Column(name = "Comment", nullable = false)
   private String comment;
-
-  @Column(name = "IsAbandoned", columnDefinition = "Bit default '0'")
+  @Type(type= "org.hibernate.type.NumericBooleanType")
+  @Column(name = "IsAbandoned", columnDefinition = "int default '0'")
   private boolean isAbandoned;
 
   public String getReleaseKey() {
