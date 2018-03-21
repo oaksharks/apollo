@@ -94,7 +94,7 @@ CREATE TABLE "AppNamespace" (
     "DataChange_LastModifiedBy" character varying(32) DEFAULT ''::character varying,
     "DataChange_LastTime" timestamp without time zone,
     "IsDeleted" integer,
-    "IsPublic" character varying
+    "IsPublic" integer
 );
 
 
@@ -499,6 +499,10 @@ ALTER TABLE public.hibernate_sequence OWNER TO triceed;
 --
 
 COPY "App" ("Id", "AppId", "Name", "OrgId", "OrgName", "OwnerName", "OwnerEmail", "IsDeleted", "DataChange_CreatedBy", "DataChange_CreatedTime", "DataChange_LastModifiedBy", "DataChange_LastTime") FROM stdin;
+307	troy	troy	aps	aps	apollo	apollo@acme.com	0	apollo	2018-03-19 18:32:43.385	apollo	2018-03-19 18:32:43.385
+309	common	common	aps	aps	apollo	apollo@acme.com	0	apollo	2018-03-19 18:32:59.651	apollo	2018-03-19 18:32:59.651
+362	heron	heron	aps	aps	apollo	apollo@acme.com	0	apollo	2018-03-20 10:46:29.091	apollo	2018-03-20 10:46:29.091
+404	falcon	falcon	aps	aps	apollo	apollo@acme.com	0	apollo	2018-03-20 12:01:31.409	apollo	2018-03-20 12:01:31.409
 \.
 
 
@@ -507,6 +511,14 @@ COPY "App" ("Id", "AppId", "Name", "OrgId", "OrgName", "OwnerName", "OwnerEmail"
 --
 
 COPY "AppNamespace" ("Id", "Name", "AppId", "Format", "Comment", "DataChange_CreatedBy", "DataChange_CreatedTime", "DataChange_LastModifiedBy", "DataChange_LastTime", "IsDeleted", "IsPublic") FROM stdin;
+290	application	troy-2.4	properties	default app namespace	apollo	2018-03-19 18:16:52.163	apollo	2018-03-19 18:16:52.163	0	0
+308	application	troy	properties	default app namespace	apollo	2018-03-19 18:32:43.408	apollo	2018-03-19 18:32:43.408	0	0
+310	application	common	properties	default app namespace	apollo	2018-03-19 18:32:59.666	apollo	2018-03-19 18:32:59.666	0	0
+327	aps.rabbitmq	common	properties		apollo	2018-03-20 10:34:28.616	apollo	2018-03-20 10:34:28.616	0	1
+344	aps.postgresql	common	properties		apollo	2018-03-20 10:37:18.461	apollo	2018-03-20 10:37:18.461	0	1
+353	aps.redis	common	properties		apollo	2018-03-20 10:41:03.018	apollo	2018-03-20 10:41:03.018	0	1
+363	application	heron	properties	default app namespace	apollo	2018-03-20 10:46:29.121	apollo	2018-03-20 10:46:29.121	0	0
+405	application	falcon	properties	default app namespace	apollo	2018-03-20 12:01:31.413	apollo	2018-03-20 12:01:31.413	0	0
 \.
 
 
@@ -614,6 +626,42 @@ COPY "Permission" ("Id", "PermissionType", "TargetId", "DataChange_CreatedBy", "
 275	AssignRole	a2	apollo	2018-03-19 09:23:58.04	apollo	2018-03-19 09:23:58.04	0
 281	ModifyNamespace	a2+application	apollo	2018-03-19 09:23:58.521	apollo	2018-03-19 09:23:58.521	0
 284	ReleaseNamespace	a2+application	apollo	2018-03-19 09:23:58.665	apollo	2018-03-19 09:23:58.665	0
+291	CreateCluster	troy-2.4	apollo	2018-03-19 18:16:52.272	apollo	2018-03-19 18:16:52.272	0
+292	CreateNamespace	troy-2.4	apollo	2018-03-19 18:16:52.278	apollo	2018-03-19 18:16:52.278	0
+293	AssignRole	troy-2.4	apollo	2018-03-19 18:16:52.287	apollo	2018-03-19 18:16:52.287	0
+299	ModifyNamespace	troy-2.4+application	apollo	2018-03-19 18:16:52.641	apollo	2018-03-19 18:16:52.641	0
+302	ReleaseNamespace	troy-2.4+application	apollo	2018-03-19 18:16:52.684	apollo	2018-03-19 18:16:52.684	0
+311	CreateCluster	common	apollo	2018-03-19 18:32:59.685	apollo	2018-03-19 18:32:59.685	0
+312	CreateNamespace	common	apollo	2018-03-19 18:32:59.689	apollo	2018-03-19 18:32:59.689	0
+313	AssignRole	common	apollo	2018-03-19 18:32:59.69	apollo	2018-03-19 18:32:59.69	0
+319	ModifyNamespace	common+application	apollo	2018-03-19 18:32:59.831	apollo	2018-03-19 18:32:59.831	0
+322	ReleaseNamespace	common+application	apollo	2018-03-19 18:32:59.855	apollo	2018-03-19 18:32:59.855	0
+328	ModifyNamespace	common+aps.rabbitmq	apollo	2018-03-20 10:34:28.681	apollo	2018-03-20 10:34:28.681	0
+331	ReleaseNamespace	common+aps.rabbitmq	apollo	2018-03-20 10:34:28.991	apollo	2018-03-20 10:34:28.991	0
+336	ModifyNamespace	troy+aps.rabbitmq	apollo	2018-03-20 10:35:51.767	apollo	2018-03-20 10:35:51.767	0
+339	ReleaseNamespace	troy+aps.rabbitmq	apollo	2018-03-20 10:35:51.947	apollo	2018-03-20 10:35:51.947	0
+345	ModifyNamespace	common+aps.postgresql	apollo	2018-03-20 10:37:18.546	apollo	2018-03-20 10:37:18.546	0
+348	ReleaseNamespace	common+aps.postgresql	apollo	2018-03-20 10:37:18.689	apollo	2018-03-20 10:37:18.689	0
+354	ModifyNamespace	common+aps.redis	apollo	2018-03-20 10:41:03.031	apollo	2018-03-20 10:41:03.031	0
+357	ReleaseNamespace	common+aps.redis	apollo	2018-03-20 10:41:03.17	apollo	2018-03-20 10:41:03.17	0
+364	CreateCluster	heron	apollo	2018-03-20 10:46:29.17	apollo	2018-03-20 10:46:29.17	0
+365	CreateNamespace	heron	apollo	2018-03-20 10:46:29.17	apollo	2018-03-20 10:46:29.17	0
+366	AssignRole	heron	apollo	2018-03-20 10:46:29.171	apollo	2018-03-20 10:46:29.171	0
+372	ModifyNamespace	heron+application	apollo	2018-03-20 10:46:29.22	apollo	2018-03-20 10:46:29.22	0
+375	ReleaseNamespace	heron+application	apollo	2018-03-20 10:46:29.232	apollo	2018-03-20 10:46:29.232	0
+380	ModifyNamespace	heron+aps.rabbitmq	apollo	2018-03-20 11:00:30.734	apollo	2018-03-20 11:00:30.734	0
+383	ReleaseNamespace	heron+aps.rabbitmq	apollo	2018-03-20 11:00:30.747	apollo	2018-03-20 11:00:30.747	0
+388	ModifyNamespace	heron+aps.postgresql	apollo	2018-03-20 11:00:42.018	apollo	2018-03-20 11:00:42.018	0
+391	ReleaseNamespace	heron+aps.postgresql	apollo	2018-03-20 11:00:42.029	apollo	2018-03-20 11:00:42.029	0
+396	ModifyNamespace	heron+aps.redis	apollo	2018-03-20 11:00:49.353	apollo	2018-03-20 11:00:49.353	0
+399	ReleaseNamespace	heron+aps.redis	apollo	2018-03-20 11:00:49.375	apollo	2018-03-20 11:00:49.375	0
+422	ModifyNamespace	falcon+aps.rabbitmq	apollo	2018-03-20 12:05:53.151	apollo	2018-03-20 12:05:53.151	0
+425	ReleaseNamespace	falcon+aps.rabbitmq	apollo	2018-03-20 12:05:53.195	apollo	2018-03-20 12:05:53.195	0
+406	CreateCluster	falcon	apollo	2018-03-20 12:01:31.428	apollo	2018-03-20 12:01:31.428	0
+407	CreateNamespace	falcon	apollo	2018-03-20 12:01:31.429	apollo	2018-03-20 12:01:31.429	0
+408	AssignRole	falcon	apollo	2018-03-20 12:01:31.43	apollo	2018-03-20 12:01:31.43	0
+414	ModifyNamespace	falcon+application	apollo	2018-03-20 12:01:31.472	apollo	2018-03-20 12:01:31.472	0
+417	ReleaseNamespace	falcon+application	apollo	2018-03-20 12:01:31.492	apollo	2018-03-20 12:01:31.492	0
 \.
 
 
@@ -652,6 +700,34 @@ COPY "Role" ("Id", "RoleName", "DataChange_CreatedBy", "DataChange_CreatedTime",
 276	Master+a2	apollo	2018-03-19 09:23:58.062	apollo	2018-03-19 09:23:58.062	0
 282	ModifyNamespace+a2+application	apollo	2018-03-19 09:23:58.557	apollo	2018-03-19 09:23:58.557	0
 285	ReleaseNamespace+a2+application	apollo	2018-03-19 09:23:58.703	apollo	2018-03-19 09:23:58.703	0
+294	Master+troy-2.4	apollo	2018-03-19 18:16:52.318	apollo	2018-03-19 18:16:52.318	0
+300	ModifyNamespace+troy-2.4+application	apollo	2018-03-19 18:16:52.658	apollo	2018-03-19 18:16:52.658	0
+303	ReleaseNamespace+troy-2.4+application	apollo	2018-03-19 18:16:52.698	apollo	2018-03-19 18:16:52.698	0
+314	Master+common	apollo	2018-03-19 18:32:59.693	apollo	2018-03-19 18:32:59.693	0
+320	ModifyNamespace+common+application	apollo	2018-03-19 18:32:59.836	apollo	2018-03-19 18:32:59.836	0
+323	ReleaseNamespace+common+application	apollo	2018-03-19 18:32:59.857	apollo	2018-03-19 18:32:59.857	0
+329	ModifyNamespace+common+aps.rabbitmq	apollo	2018-03-20 10:34:28.706	apollo	2018-03-20 10:34:28.706	0
+332	ReleaseNamespace+common+aps.rabbitmq	apollo	2018-03-20 10:34:28.997	apollo	2018-03-20 10:34:28.997	0
+337	ModifyNamespace+troy+aps.rabbitmq	apollo	2018-03-20 10:35:51.818	apollo	2018-03-20 10:35:51.818	0
+340	ReleaseNamespace+troy+aps.rabbitmq	apollo	2018-03-20 10:35:51.952	apollo	2018-03-20 10:35:51.952	0
+346	ModifyNamespace+common+aps.postgresql	apollo	2018-03-20 10:37:18.564	apollo	2018-03-20 10:37:18.564	0
+349	ReleaseNamespace+common+aps.postgresql	apollo	2018-03-20 10:37:18.694	apollo	2018-03-20 10:37:18.694	0
+355	ModifyNamespace+common+aps.redis	apollo	2018-03-20 10:41:03.034	apollo	2018-03-20 10:41:03.034	0
+358	ReleaseNamespace+common+aps.redis	apollo	2018-03-20 10:41:03.173	apollo	2018-03-20 10:41:03.173	0
+367	Master+heron	apollo	2018-03-20 10:46:29.175	apollo	2018-03-20 10:46:29.175	0
+373	ModifyNamespace+heron+application	apollo	2018-03-20 10:46:29.222	apollo	2018-03-20 10:46:29.222	0
+376	ReleaseNamespace+heron+application	apollo	2018-03-20 10:46:29.234	apollo	2018-03-20 10:46:29.234	0
+381	ModifyNamespace+heron+aps.rabbitmq	apollo	2018-03-20 11:00:30.737	apollo	2018-03-20 11:00:30.737	0
+384	ReleaseNamespace+heron+aps.rabbitmq	apollo	2018-03-20 11:00:30.75	apollo	2018-03-20 11:00:30.75	0
+389	ModifyNamespace+heron+aps.postgresql	apollo	2018-03-20 11:00:42.02	apollo	2018-03-20 11:00:42.02	0
+392	ReleaseNamespace+heron+aps.postgresql	apollo	2018-03-20 11:00:42.031	apollo	2018-03-20 11:00:42.031	0
+397	ModifyNamespace+heron+aps.redis	apollo	2018-03-20 11:00:49.361	apollo	2018-03-20 11:00:49.361	0
+400	ReleaseNamespace+heron+aps.redis	apollo	2018-03-20 11:00:49.377	apollo	2018-03-20 11:00:49.377	0
+409	Master+falcon	apollo	2018-03-20 12:01:31.443	apollo	2018-03-20 12:01:31.443	0
+415	ModifyNamespace+falcon+application	apollo	2018-03-20 12:01:31.479	apollo	2018-03-20 12:01:31.479	0
+418	ReleaseNamespace+falcon+application	apollo	2018-03-20 12:01:31.494	apollo	2018-03-20 12:01:31.494	0
+423	ModifyNamespace+falcon+aps.rabbitmq	apollo	2018-03-20 12:05:53.177	apollo	2018-03-20 12:05:53.177	0
+426	ReleaseNamespace+falcon+aps.rabbitmq	apollo	2018-03-20 12:05:53.197	apollo	2018-03-20 12:05:53.197	0
 \.
 
 
@@ -710,6 +786,42 @@ COPY "RolePermission" ("Id", "RoleId", "PermissionId", "DataChange_CreatedBy", "
 279	276	275	apollo	2018-03-19 09:23:58.205	apollo	2018-03-19 09:23:58.205	0
 283	282	281	apollo	2018-03-19 09:23:58.575	apollo	2018-03-19 09:23:58.575	0
 286	285	284	apollo	2018-03-19 09:23:58.712	apollo	2018-03-19 09:23:58.712	0
+295	294	291	apollo	2018-03-19 18:16:52.391	apollo	2018-03-19 18:16:52.391	0
+296	294	292	apollo	2018-03-19 18:16:52.394	apollo	2018-03-19 18:16:52.394	0
+297	294	293	apollo	2018-03-19 18:16:52.395	apollo	2018-03-19 18:16:52.395	0
+301	300	299	apollo	2018-03-19 18:16:52.66	apollo	2018-03-19 18:16:52.66	0
+304	303	302	apollo	2018-03-19 18:16:52.703	apollo	2018-03-19 18:16:52.703	0
+315	314	311	apollo	2018-03-19 18:32:59.698	apollo	2018-03-19 18:32:59.698	0
+316	314	312	apollo	2018-03-19 18:32:59.708	apollo	2018-03-19 18:32:59.708	0
+317	314	313	apollo	2018-03-19 18:32:59.709	apollo	2018-03-19 18:32:59.709	0
+321	320	319	apollo	2018-03-19 18:32:59.844	apollo	2018-03-19 18:32:59.844	0
+324	323	322	apollo	2018-03-19 18:32:59.858	apollo	2018-03-19 18:32:59.858	0
+330	329	328	apollo	2018-03-20 10:34:28.733	apollo	2018-03-20 10:34:28.733	0
+333	332	331	apollo	2018-03-20 10:34:28.998	apollo	2018-03-20 10:34:28.998	0
+338	337	336	apollo	2018-03-20 10:35:51.853	apollo	2018-03-20 10:35:51.853	0
+341	340	339	apollo	2018-03-20 10:35:51.953	apollo	2018-03-20 10:35:51.953	0
+347	346	345	apollo	2018-03-20 10:37:18.585	apollo	2018-03-20 10:37:18.585	0
+350	349	348	apollo	2018-03-20 10:37:18.695	apollo	2018-03-20 10:37:18.695	0
+356	355	354	apollo	2018-03-20 10:41:03.035	apollo	2018-03-20 10:41:03.035	0
+359	358	357	apollo	2018-03-20 10:41:03.174	apollo	2018-03-20 10:41:03.174	0
+368	367	364	apollo	2018-03-20 10:46:29.175	apollo	2018-03-20 10:46:29.175	0
+369	367	365	apollo	2018-03-20 10:46:29.176	apollo	2018-03-20 10:46:29.176	0
+370	367	366	apollo	2018-03-20 10:46:29.177	apollo	2018-03-20 10:46:29.177	0
+374	373	372	apollo	2018-03-20 10:46:29.223	apollo	2018-03-20 10:46:29.223	0
+377	376	375	apollo	2018-03-20 10:46:29.235	apollo	2018-03-20 10:46:29.235	0
+382	381	380	apollo	2018-03-20 11:00:30.739	apollo	2018-03-20 11:00:30.739	0
+385	384	383	apollo	2018-03-20 11:00:30.75	apollo	2018-03-20 11:00:30.75	0
+390	389	388	apollo	2018-03-20 11:00:42.021	apollo	2018-03-20 11:00:42.021	0
+393	392	391	apollo	2018-03-20 11:00:42.032	apollo	2018-03-20 11:00:42.032	0
+398	397	396	apollo	2018-03-20 11:00:49.362	apollo	2018-03-20 11:00:49.362	0
+401	400	399	apollo	2018-03-20 11:00:49.377	apollo	2018-03-20 11:00:49.377	0
+410	409	406	apollo	2018-03-20 12:01:31.444	apollo	2018-03-20 12:01:31.444	0
+411	409	407	apollo	2018-03-20 12:01:31.445	apollo	2018-03-20 12:01:31.445	0
+412	409	408	apollo	2018-03-20 12:01:31.446	apollo	2018-03-20 12:01:31.446	0
+416	415	414	apollo	2018-03-20 12:01:31.48	apollo	2018-03-20 12:01:31.48	0
+419	418	417	apollo	2018-03-20 12:01:31.495	apollo	2018-03-20 12:01:31.495	0
+424	423	422	apollo	2018-03-20 12:05:53.187	apollo	2018-03-20 12:05:53.187	0
+427	426	425	apollo	2018-03-20 12:05:53.198	apollo	2018-03-20 12:05:53.198	0
 \.
 
 
@@ -723,7 +835,7 @@ COPY "ServerConfig" ("Id", "Key", "Value", "Comment", "DataChange_CreatedBy", "D
 4	api.readTimeout	10000	http接口read timeout	default	2018-03-17 16:07:29.692204		\N	0
 5	consumer.token.salt	someSalt	consumer token salt	default	2018-03-17 16:07:29.692204		\N	0
 6	admin.createPrivateNamespace.switch	false	是否允许项目管理员创建私有namespace	default	2018-03-17 16:07:29.692204		\N	0
-2	organizations	[{"orgId":"TEST1","orgName":"样例部门1"},{"orgId":"TEST2","orgName":"样例部门2"}]	部门列表	default	2018-03-17 16:07:29.692204		\N	0
+2	organizations	[{"orgId":"aps","orgName":"aps"},{"orgId":"TEST2","orgName":"样例部门2"}]	部门列表	default	2018-03-17 16:07:29.692204		\N	0
 \.
 
 
@@ -762,6 +874,34 @@ COPY "UserRole" ("Id", "UserId", "RoleId", "DataChange_CreatedBy", "DataChange_C
 280	apollo	276	apollo	2018-03-19 09:23:58.438	apollo	2018-03-19 09:23:58.438	0
 287	apollo	282	apollo	2018-03-19 09:23:58.751	apollo	2018-03-19 09:23:58.751	0
 288	apollo	285	apollo	2018-03-19 09:23:58.771	apollo	2018-03-19 09:23:58.771	0
+298	apollo	294	apollo	2018-03-19 18:16:52.601	apollo	2018-03-19 18:16:52.601	0
+305	apollo	300	apollo	2018-03-19 18:16:52.759	apollo	2018-03-19 18:16:52.759	0
+306	apollo	303	apollo	2018-03-19 18:16:52.798	apollo	2018-03-19 18:16:52.798	0
+318	apollo	314	apollo	2018-03-19 18:32:59.799	apollo	2018-03-19 18:32:59.799	0
+325	apollo	320	apollo	2018-03-19 18:32:59.874	apollo	2018-03-19 18:32:59.874	0
+326	apollo	323	apollo	2018-03-19 18:32:59.886	apollo	2018-03-19 18:32:59.886	0
+334	apollo	329	apollo	2018-03-20 10:34:29.081	apollo	2018-03-20 10:34:29.081	0
+335	apollo	332	apollo	2018-03-20 10:34:29.108	apollo	2018-03-20 10:34:29.108	0
+342	apollo	337	apollo	2018-03-20 10:35:52.064	apollo	2018-03-20 10:35:52.064	0
+343	apollo	340	apollo	2018-03-20 10:35:52.083	apollo	2018-03-20 10:35:52.083	0
+351	apollo	346	apollo	2018-03-20 10:37:18.765	apollo	2018-03-20 10:37:18.765	0
+352	apollo	349	apollo	2018-03-20 10:37:18.856	apollo	2018-03-20 10:37:18.856	0
+360	apollo	355	apollo	2018-03-20 10:41:03.227	apollo	2018-03-20 10:41:03.227	0
+361	apollo	358	apollo	2018-03-20 10:41:03.269	apollo	2018-03-20 10:41:03.269	0
+371	apollo	367	apollo	2018-03-20 10:46:29.216	apollo	2018-03-20 10:46:29.216	0
+378	apollo	373	apollo	2018-03-20 10:46:29.242	apollo	2018-03-20 10:46:29.242	0
+379	apollo	376	apollo	2018-03-20 10:46:29.247	apollo	2018-03-20 10:46:29.247	0
+386	apollo	381	apollo	2018-03-20 11:00:30.806	apollo	2018-03-20 11:00:30.806	0
+387	apollo	384	apollo	2018-03-20 11:00:30.814	apollo	2018-03-20 11:00:30.814	0
+394	apollo	389	apollo	2018-03-20 11:00:42.072	apollo	2018-03-20 11:00:42.072	0
+395	apollo	392	apollo	2018-03-20 11:00:42.079	apollo	2018-03-20 11:00:42.079	0
+402	apollo	397	apollo	2018-03-20 11:00:49.439	apollo	2018-03-20 11:00:49.439	0
+403	apollo	400	apollo	2018-03-20 11:00:49.447	apollo	2018-03-20 11:00:49.447	0
+413	apollo	409	apollo	2018-03-20 12:01:31.468	apollo	2018-03-20 12:01:31.468	0
+420	apollo	415	apollo	2018-03-20 12:01:31.518	apollo	2018-03-20 12:01:31.518	0
+421	apollo	418	apollo	2018-03-20 12:01:31.526	apollo	2018-03-20 12:01:31.526	0
+428	apollo	423	apollo	2018-03-20 12:05:53.251	apollo	2018-03-20 12:05:53.251	0
+429	apollo	426	apollo	2018-03-20 12:05:53.259	apollo	2018-03-20 12:05:53.259	0
 \.
 
 
@@ -834,7 +974,7 @@ SELECT pg_catalog.setval('favorite_seq', 1, false);
 -- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: triceed
 --
 
-SELECT pg_catalog.setval('hibernate_sequence', 288, true);
+SELECT pg_catalog.setval('hibernate_sequence', 429, true);
 
 
 --
