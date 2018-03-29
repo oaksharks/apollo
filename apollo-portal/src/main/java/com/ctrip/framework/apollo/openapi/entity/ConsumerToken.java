@@ -22,7 +22,7 @@ public class ConsumerToken extends BaseEntity {
   @Column(name = "ConsumerId", nullable = false)
   private long consumerId;
 
-  @Column(name = "token", nullable = false)
+  @Column(name = "Token", nullable = false)
   private String token;
 
   @Column(name = "Expires", nullable = false)
